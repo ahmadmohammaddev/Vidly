@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Basic Controller routes
+/*
 Route::get('genres', 'genreController@index');
 
 Route::get('genres/create', 'genreController@createNewGenre');
@@ -31,3 +33,6 @@ Route::get('genres/{genreName}/edit', 'genreController@editGenre');
 Route::patch('genres/{genreName}/edit', 'genreController@saveEditedGenre');
 
 Route::delete('genres/{genreName}/delete', 'genreController@deleteGenre');
+*/
+
+Route::resource('genre', 'GenreResourceController');

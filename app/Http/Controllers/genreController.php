@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 class genreController extends Controller
 {
+    // Basic Controller methods
+
     public function index()
     {
         return '<center><h1>The Genres</h1></center>';
