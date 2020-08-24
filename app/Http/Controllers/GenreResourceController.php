@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GenreResourceController extends Controller
 {
@@ -27,9 +28,9 @@ class GenreResourceController extends Controller
         //return view('moviesViewsContainer.movies')->with('date' ,$date)->with('time',$time);
         //return view('moviesViewsContainer.movies')->withDate($date)->withTime($time);
 
-        $genres = ['action' => 'dragon2.jpg', 'comedy' => 'monsters.jpg'];
+        // $genres = ['action' => 'dragon2.jpg', 'comedy' => 'monsters.jpg'];
 
-
+        $genres = DB::table('genres')->get();
 
         return view('moviesViewsContainer.movies')->with('genres', $genres);;
     }
