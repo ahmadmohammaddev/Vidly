@@ -13,7 +13,7 @@ class GenreResourceController extends Controller
      */
     public function index()
     {
-        return '<center><h1>The Genres</h1></center>';
+        return view('moviesViewsContainer.movies');
     }
 
     /**
