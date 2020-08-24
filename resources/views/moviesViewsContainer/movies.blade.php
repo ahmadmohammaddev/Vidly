@@ -14,7 +14,7 @@
                 <p>Evrey movie is a new adventure</p>
             </div>
             <div class="col-md-2">
-                Date : {{ $date }} <br/> Time : {{ $time }} 
+                {{-- Date : {{ $date }} <br/> Time : {{ $time }}  --}}
             </div>
             
         </div>
@@ -22,12 +22,15 @@
 
 
     <div class="row">
+        @foreach($genres as $key => $value)
         <div class="col-md-3">
             <div class="thumbnail">
-                <img src="{{asset('images/dragon2.jpg')}}">
-                <h1><a class="btn btn-primary">Action</a></h1>
+                <img src="images/{{$value}}">
+                <h1><a class="btn btn-primary">{{$key}}</a></h1>
             </div>
         </div> 
+        @endforeach
+        
     </div>
 
     <footer class="container">

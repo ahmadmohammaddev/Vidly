@@ -21,13 +21,17 @@ class GenreResourceController extends Controller
         // so i can pass valuew to the view in this way
         //return view('moviesViewsContainer.movies', compact('date', 'time'));
 
-        $arrayOfObject = ['date' => $date, 'time' => $time];
+        //$arrayOfObject = ['date' => $date, 'time' => $time];
 
         // And i can use the with method
         //return view('moviesViewsContainer.movies')->with('date' ,$date)->with('time',$time);
         //return view('moviesViewsContainer.movies')->withDate($date)->withTime($time);
 
-        return view('moviesViewsContainer.movies', $arrayOfObject);
+        $genres = ['action' => 'dragon2.jpg', 'comedy' => 'monsters.jpg'];
+
+
+
+        return view('moviesViewsContainer.movies')->with('genres', $genres);;
     }
 
     /**
