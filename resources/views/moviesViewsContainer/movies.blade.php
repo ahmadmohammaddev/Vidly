@@ -9,8 +9,14 @@
 <body>
     <header class="jumbotron">
         <div class="container">
-        <h1>The Movies!</h1>
-        <p>Evrey movie is a new adventure</p>
+            <div class="col-md-10">
+                <h1>The Movies!</h1>
+                <p>Evrey movie is a new adventure</p>
+            </div>
+            <div class="col-md-2">
+                Date : {{ $date }} <br/> Time : {{ $time }} 
+            </div>
+            
         </div>
     </header>
 

@@ -13,7 +13,21 @@ class GenreResourceController extends Controller
      */
     public function index()
     {
-        return view('moviesViewsContainer.movies');
+
+        $date = date('Y-m-d');
+        $time = date('H:i:s');
+
+        //i can use the compact method to create an array of variables
+        // so i can pass valuew to the view in this way
+        //return view('moviesViewsContainer.movies', compact('date', 'time'));
+
+        $arrayOfObject = ['date' => $date, 'time' => $time];
+
+        // And i can use the with method
+        //return view('moviesViewsContainer.movies')->with('date' ,$date)->with('time',$time);
+        //return view('moviesViewsContainer.movies')->withDate($date)->withTime($time);
+
+        return view('moviesViewsContainer.movies', $arrayOfObject);
     }
 
     /**
