@@ -17,20 +17,29 @@
             </div>
             <hr/>
 
+            {{-- Creating New Genre Form --}}
+            
             {!! Form::open(['url' => 'genre', 'files' => true]) !!}
-            <div class="input-group mb-1">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="">Name of Genre</span>
+            <div class="row">
+                <div class="col-6">
+                    <div class="input-group mb-1">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="">Name of Genre</span>
+                        </div>
+                        {!!   Form::text('genre_name', '',['class' => 'form-control']) !!}
+                    </div>
                 </div>
-                {!!   Form::text('genre_name', '',['class' => 'form-control']) !!}
-            </div>
-            <div class="input-group">
-                <div class="custom-file">                  
-                  {!! Form::file('image',['class' => 'custom-file-input', 'type' => 'file', 'id' => 'inputGroupFile04']); !!}
-                  <label class="custom-file-label" for="inputGroupFile04">Upload an image</label>
-                </div>
-                <div class="input-group-append">
-                  {!! Form::submit('Create',["class"=>"btn btn-info"]);!!}
+
+                <div class="col-6">
+                    <div class="input-group">
+                        <div class="custom-file">                  
+                          {!! Form::file('image',['class' => 'custom-file-input', 'type' => 'file', 'id' => 'inputGroupFile04']); !!}
+                          <label class="custom-file-label" for="inputGroupFile04">Upload an image</label>
+                        </div>
+                        <div class="input-group-append">
+                          {!! Form::submit('Create',["class"=>"btn btn-info"]);!!}
+                        </div>
+                    </div>
                 </div>
             </div>
             {!! Form::close() !!}
