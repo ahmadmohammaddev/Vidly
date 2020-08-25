@@ -56,9 +56,9 @@
             <table class="table">
                 <tr>
                     <th><h3>Genre Name</h3></th>
-                    <th><h3>Total Movies</h3></th>
-                    <th><h3>Update</h3></th>
-                    <th><h3>Delete</h3></th>
+                    <th class="text-center"><h3>Total Movies</h3></th>
+                    <th class="text-center"><h3>Update</h3></th>
+                    <th class="text-center"><h3>Delete</h3></th>
                 </tr>
                     
                 @foreach($genres as $genre)
@@ -66,17 +66,17 @@
                 <tr>
                     {!! Form::open(['url' => 'genre/'.$genre->id, 'method' => 'put']) !!}
                         <td>
-                            {!! Form::text('genre_name', $genre->name); !!}
+                            {!! Form::text('genre_name', $genre->name, ['class' => 'form-control']); !!}
                         </td>
-                        <td>
+                        <td class="text-center">
                             <span class="label label-default">{{ $genre->movies_total }}</span>
                         </td>
-                        <td>
+                        <td class="text-center">
                             {!! Form::submit('Update',["class"=>"btn btn-success"]);!!}
                         </td>
                     {!! Form::close() !!}
 
-                        <td>
+                        <td class="text-center">
                             {!! Form::open(['url' => 'genre/'.$genre->id, 'method' => 'delete']) !!}
                                 {!! Form::submit('Delete',["class"=>"btn btn-danger"]);!!}                        
                             {!! Form::close() !!}
