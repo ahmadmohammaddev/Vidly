@@ -74,11 +74,25 @@
                 
         @foreach($all_movies as $movie)
         <tr>
-            <td>{{ $movie->title }}</td>
-            <td>{{ $movie->description }}</td>
-            <td class="text-center">{{ $movie->number_in_stock }}</td>
-            <td class="text-center">{{ $movie->daily_rental_rate }}</td>
-            <td><a href="#">Update</a></td>
+            {!! Form::open(['url' => 'movie/'.$movie->id, 'method' => 'put']) !!}
+            {!! Form::hidden("genre_id",$genre->id) !!}
+                <td>
+                    {!! Form::text('movie_title', $movie->title, ['class' => 'form-control']); !!}
+                </td>
+                <td>
+                    {!! Form::text('description', $movie->description, ['class' => 'form-control']); !!}
+                </td>
+                <td>
+                    {!! Form::text('number_in_stock', $movie->number_in_stock, ['class' => 'form-control']); !!}
+                </td>
+                <td>
+                    {!! Form::text('daily_rental_rate', $movie->daily_rental_rate, ['class' => 'form-control']); !!}
+                </td>                        
+                <td class="text-center">
+                    {!! Form::submit('Update',["class"=>"btn btn-success"]);!!}
+                </td>
+            {!! Form::close() !!}
+            
             <td><a href="#">Delete</a></td>
         </tr>
         @endforeach

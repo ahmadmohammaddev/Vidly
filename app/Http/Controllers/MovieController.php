@@ -84,7 +84,22 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $title = $request->movie_title;
+        $description = $request->description;
+        $number_in_stock = $request->number_in_stock;
+        $daily_rental_rate = $request->daily_rental_rate;
+        $genre_id = $request->genre_id;
+
+        DB::table('movies')
+            ->where("id", $id)
+            ->update([
+                'title' => $title,
+                'description' => $description,
+                'number_in_stock' => $number_in_stock,
+                'daily_rental_rate' => $daily_rental_rate
+            ]);
+
+        return redirect('genre/' . $genre_id);
     }
 
     /**
