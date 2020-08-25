@@ -59,6 +59,7 @@
                     <th class="text-center"><h3>Total Movies</h3></th>
                     <th class="text-center"><h3>Update</h3></th>
                     <th class="text-center"><h3>Delete</h3></th>
+                    <th class="text-center"></th>
                 </tr>
                     
                 @foreach($genres as $genre)
@@ -85,6 +86,16 @@
                                 {!! Form::submit('Delete',["class"=>"btn btn-danger"]);!!}                        
                             {!! Form::close() !!}
                         </td>
+
+                        @if($genre->trashed())
+                        <td class="text-center">
+                            {!! Form::open(['url' => 'genre/restore/'.$genre->id]) !!}
+                                {!! Form::submit('Restore',["class"=>"btn btn-light"]);!!}                        
+                            {!! Form::close() !!}
+                        </td>                        
+                        @endif
+
+
                 </tr>
         
                 @endforeach

@@ -140,4 +140,13 @@ class GenreResourceController extends Controller
 
         return redirect('admin');
     }
+
+
+    public function restore($id)
+    {
+        $genre = Genre::onlyTrashed()->find($id);
+        $genre->restore();
+
+        return redirect('admin');
+    }
 }
