@@ -15,15 +15,23 @@
             <h2><br/> Creating new Genre</h2> <hr/>
 
             {{-- Creating New Genre --}}
-            <form action="genre" method="POST" enctype="multipart/form-data">
+            {{-- <form action="genre" method="POST" enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 Enter the name of the Genre:<input type="text" name="genre_name" /><br />
-                Upload an image : <input type="file" name="image" />
+                Upload an image: <input type="file" name="image" />
                 <br />
                 <button class="btn btn—default" type="submit">
                     <img src="{{asset('/images/add.ico')}}" width="25px" height="25px" />Create
                 </button>
-            </form>
+            </form> --}}
+
+            {!! Form::open(['url' => 'genre', 'files' => true]) !!}
+            Enter the name of the Genre:{!! Form::text('genre_name'); !!}
+            Upload an image:{!! Form::file('image'); !!}
+            {!! Form::submit('Create',["class"=>"btn btn-info"]);!!}
+            {!! Form::close() !!}
+
+
         </div>{{-- end of body --}}
         
         @if($genres != null)
