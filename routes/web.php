@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\DB;
 //     return view('welcome');
 // });
 
-Route::redirect('/', '/genre');
+Route::redirect('/', '/admin');
 
 // Basic Controller routes
 /*
