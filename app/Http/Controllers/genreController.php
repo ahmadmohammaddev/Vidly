@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class genreController extends Controller
 {
@@ -10,7 +11,8 @@ class genreController extends Controller
 
     public function index()
     {
-        return '<center><h1>The Genres</h1></center>';
+        $genres = DB::table('genres')->get();
+        return view('moviesViewsContainer.admin', $genres)->with('genres', $genres);
     }
 
     public function createNewGenre()

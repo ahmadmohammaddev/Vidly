@@ -1,6 +1,8 @@
+
 @extends('master')
 
 @section('content')
+
 
 <div class="container">
 
@@ -23,25 +25,25 @@
                 </button>
             </form>
         </div>{{-- end of body --}}
-
+        
         @if($genres != null)
             <table c1ass="table">
                 <tr>
                     <th><h3>Genre Name</h3></th>
                     <th><h3>Total Movies</h3></th>
                     <th><h3>Update</h3></th>
-                    <th><h3>De1ete</h3></th>
+                    <th><h3>Delete</h3></th>
                 </tr>
                     
                 @foreach($genres as $genre)
                 <!-- TabLe -->
                 <tr>
                     {{-- Updating Existing Genre --}}
-                    <form action="genre/{{$genre->id}}/" method="POST">
+                    <form action="genre/{{$genre->id}}" method="POST">
                         {!! csrf_field() !!}
-                        <input type="hidden" name="_method" value="PATCH" />
+                        {{ method_field('PUT') }}
                         <td>
-                            <input type="text" name="genre_name" value="{{ $genre->genre_name}}">
+                            <input type="text" name="genre_name" value="{{ $genre->name}}">
                         </td>
                         <td>
                             <span class="label label-default">{{ $genre->movies_total }}</span>
@@ -49,17 +51,16 @@
 
                         
                         <td>
-                            <img src="{{asset('/images/update.png')}}" width="25px" height="25px" onclick="submit()" />
+                            <button name="action" class="btn btn—default" type="submit"><img src="{{asset('/images/update.png')}}" width="25px" height="25px" alt="blue"></button>
                         </td>
                     </form>
 
                     <td>
                     {{-- Deleting Genre --}}
-                    <form action="genre/{{$genre->id}}/" method="POST">
+                    <form action="genre/{{$genre->id}}" method="POST">
                         {!! csrf_field() !!}
-                        
-                            <img src="{{asset('/images/delete.png')}}" width="25px" height="25px" onclick="submit()" />
-                        
+                        {{ method_field('DELETE') }}
+                        <button name="action" class="btn btn—default" type="submit"><img src="{{asset('/images/delete.png')}}" width="25px" height="25px" alt="blue"></button>
                     </form>
                     </td>
                 </tr>

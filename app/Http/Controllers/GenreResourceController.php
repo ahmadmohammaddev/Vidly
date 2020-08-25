@@ -32,7 +32,7 @@ class GenreResourceController extends Controller
 
         $genres = DB::table('genres')->get();
 
-        return view('moviesViewsContainer.movies')->with('genres', $genres);;
+        return view('moviesViewsContainer.movies')->with('genres', $genres);
     }
 
     /**
@@ -97,7 +97,7 @@ class GenreResourceController extends Controller
     {
         //saving the edited genre to the db.
         $genre_name = $request->input('genre_name');
-        DB::table('genres')->where('id', $id)->update(['genre_name' => $genre_name]);
+        DB::table('genres')->where('id', $id)->update(['name' => $genre_name]);
         return redirect('admin');
     }
 

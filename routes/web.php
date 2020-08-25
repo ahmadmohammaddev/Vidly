@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\genreController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::redirect('/', '/genre');
+Route::redirect('/', '/admin');
 
 // Basic Controller routes
 /*
@@ -38,3 +39,5 @@ Route::delete('genres/{genreName}/delete', 'genreController@deleteGenre');
 */
 
 Route::resource('genre', 'GenreResourceController');
+
+Route::get('admin', 'genreController@index');
