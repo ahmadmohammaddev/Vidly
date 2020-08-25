@@ -17,6 +17,7 @@ class CreateGenresTable extends Migration
             $table->id();
 			$table->string('name');
 			$table->integer('movies_total');
+			$table->string('image_name');
             $table->timestamps();
         });
     }
