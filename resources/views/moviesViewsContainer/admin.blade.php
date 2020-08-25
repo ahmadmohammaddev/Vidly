@@ -63,7 +63,11 @@
                     
                 @foreach($genres as $genre)
                 <!-- TabLe -->
-                <tr>
+                @if($genre->trashed())
+                    <tr style="background-color:#CA3C3C">
+                @else
+                    <tr style="background-color:#fff">
+                @endif
                     {!! Form::open(['url' => 'genre/'.$genre->id, 'method' => 'put']) !!}
                         <td>
                             {!! Form::text('genre_name', $genre->name, ['class' => 'form-control']); !!}
