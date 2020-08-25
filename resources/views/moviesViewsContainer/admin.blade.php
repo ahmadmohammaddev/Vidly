@@ -93,6 +93,10 @@
                                     {!! Form::submit('Delete',["class"=>"btn btn-danger"]);!!}                        
                                 {!! Form::close() !!}
                             </td>
+
+                            <td class="text-center">
+                                <a href="genre/{{$genre->id}}" class="btn btn-light">Show</a>
+                            </td>
                         @endif
 
                         @if($genre->trashed())

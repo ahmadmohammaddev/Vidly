@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 use App\Genre;
 
 class GenreResourceController extends Controller
@@ -83,7 +83,12 @@ class GenreResourceController extends Controller
      */
     public function show($id)
     {
-        return '<center><h1>This page is for ' . $id .  ' genre</h1></center>';
+        $genre = Genre::find($id);
+        $all_movies = DB::table('genres')
+            ->join('movies', 'genres.id', '=', 'movies.genre_id')
+            ->where('genres.id', $id)
+            ->get();
+        return view('moviesViewsContainer.moviesOfGenre', compact('genre', $genre, 'all_movies', $all_movies));
     }
 
     /**
