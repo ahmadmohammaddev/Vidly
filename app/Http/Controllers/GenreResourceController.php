@@ -54,6 +54,14 @@ class GenreResourceController extends Controller
     public function store(Request $request)
     {
         // storing the new created genre to the db.
+        $genre_name = $request->input('genre_name');
+        $file = $request->file('image');
+        $destinationPath = 'images';
+
+        $filename = $file->getClientOriginalName();
+        $file->move($destinationPath, $filename);
+        DB::table('genres')->insert(['name' => $genre_name, 'image_name' => $filename]);
+        return redirect('admin');
     }
 
     /**
@@ -88,6 +96,9 @@ class GenreResourceController extends Controller
     public function update(Request $request, $id)
     {
         //saving the edited genre to the db.
+        $genre_name = $request->input('genre_name');
+        DB::table('genres')->where('id', $id)->update(['genre_name' => $genre_name]);
+        return redirect('admin');
     }
 
     /**
@@ -99,5 +110,7 @@ class GenreResourceController extends Controller
     public function destroy($id)
     {
         //deLete the genre with id = $id from db with ther movies
+        DB::table('genres')->where('id', $id)->delete();
+        return redirect('admin');
     }
 }
