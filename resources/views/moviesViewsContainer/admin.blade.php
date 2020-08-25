@@ -26,9 +26,9 @@
             </form> --}}
 
             {!! Form::open(['url' => 'genre', 'files' => true]) !!}
-            Enter the name of the Genre:{!! Form::text('genre_name'); !!}
-            Upload an image:{!! Form::file('image'); !!}
-            {!! Form::submit('Create',["class"=>"btn btn-info"]);!!}
+                Enter the name of the Genre:{!! Form::text('genre_name'); !!}
+                Upload an image:{!! Form::file('image'); !!}
+                {!! Form::submit('Create',["class"=>"btn btn-info"]);!!}
             {!! Form::close() !!}
 
 
@@ -47,7 +47,7 @@
                 <!-- TabLe -->
                 <tr>
                     {{-- Updating Existing Genre --}}
-                    <form action="genre/{{$genre->id}}" method="POST">
+                    {{-- <form action="genre/{{$genre->id}}" method="POST">
                         {!! csrf_field() !!}
                         {{ method_field('PUT') }}
                         <td>
@@ -56,20 +56,37 @@
                         <td>
                             <span class="label label-default">{{ $genre->movies_total }}</span>
                         </td>
-
                         
                         <td>
                             <button name="action" class="btn btn—default" type="submit"><img src="{{asset('/images/update.png')}}" width="25px" height="25px" alt="blue"></button>
                         </td>
-                    </form>
+                    </form> --}}
+
+                    {!! Form::open(['url' => 'genre/'.$genre->id, 'method' => 'put']) !!}
+                        <td>
+                            {!! Form::text('genre_name', $genre->name); !!}
+                        </td>
+                        <td>
+                            <span class="label label-default">{{ $genre->movies_total }}</span>
+                        </td>
+                        <td>
+                            {!! Form::submit('Update',["class"=>"btn btn-success"]);!!}
+                        </td>
+                    {!! Form::close() !!}
 
                     <td>
                     {{-- Deleting Genre --}}
-                    <form action="genre/{{$genre->id}}" method="POST">
+                    {{-- <form action="genre/{{$genre->id}}" method="POST">
                         {!! csrf_field() !!}
                         {{ method_field('DELETE') }}
                         <button name="action" class="btn btn—default" type="submit"><img src="{{asset('/images/delete.png')}}" width="25px" height="25px" alt="blue"></button>
-                    </form>
+                    </form> --}}
+
+                    {!! Form::open(['url' => 'genre/'.$genre->id, 'method' => 'delete']) !!}
+                        {!! Form::submit('Delete',["class"=>"btn btn-danger"]);!!}                        
+                    {!! Form::close() !!}
+
+
                     </td>
                 </tr>
         
