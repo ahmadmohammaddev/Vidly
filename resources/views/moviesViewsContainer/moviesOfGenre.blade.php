@@ -1,4 +1,4 @@
-@extends('master')
+@extends('adminMaster')
 
 @section('content')
     
@@ -61,13 +61,18 @@
     </div>
     {!! Form::close() !!}
 
+    <hr/>
 
+    <div class="text-center mt-5">
+        <h2> Editing Existing Movie</h2>
+    </div>
+    <br/>
     <table class="table">
         <tr>
-            <th><h3>Movie Title</h3></th>
-            <th class="text-center"><h3>Movie Description</h3></th>
-            <th class="text-center"><h3>Number in stock</h3></th>
-            <th class="text-center"><h3>Daily rental rate</h3></th>
+            <th><h5>Movie Title</h5></th>
+            <th class="text-center"><h5>Movie Description</h5></th>
+            <th class="text-center"><h5>Number in stock</h5></th>
+            <th class="text-center"><h5>Daily rental rate</h5></th>
             <th class="text-center"></th>            
             <th class="text-center"></th>
         </tr>
@@ -93,7 +98,12 @@
                 </td>
             {!! Form::close() !!}
             
-            <td><a href="#">Delete</a></td>
+            <td class="text-center">
+                {!! Form::open(['url' => 'movie/'.$movie->id, 'method' => 'delete']) !!}
+                {!! Form::hidden("genre_id",$genre->id) !!}
+                {!! Form::submit('Delete',["class"=>"btn btn-danger"]);!!}                        
+                {!! Form::close() !!}
+            </td>
         </tr>
         @endforeach
     </table>

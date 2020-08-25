@@ -108,8 +108,10 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $genre_id = $request->genre_id;
+        DB::table('movies')->where('id', $id)->delete();
+        return redirect('genre/' . $genre_id);
     }
 }
