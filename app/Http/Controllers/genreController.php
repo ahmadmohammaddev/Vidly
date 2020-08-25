@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 class genreController extends Controller
 {
     // Basic Controller methods
+    // TODO change the name of the controller to be admin controller
+    // and then make suitable changes to methodes
 
     public function index()
     {

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\DB;
+use App\Genre;
 
 class GenreResourceController extends Controller
 {
@@ -30,7 +31,9 @@ class GenreResourceController extends Controller
 
         // $genres = ['action' => 'dragon2.jpg', 'comedy' => 'monsters.jpg'];
 
-        $genres = DB::table('genres')->get();
+        //$genres = DB::table('genres')->get();
+
+        $genres = Genre::all();
 
         return view('moviesViewsContainer.movies')->with('genres', $genres);
     }
@@ -60,7 +63,15 @@ class GenreResourceController extends Controller
 
         $filename = $file->getClientOriginalName();
         $file->move($destinationPath, $filename);
-        DB::table('genres')->insert(['name' => $genre_name, 'image_name' => $filename]);
+        //DB::table('genres')->insert(['name' => $genre_name, 'image_name' => $filename]);
+        //Genre::insert(['name' => $genre_name, 'image_name' => $filename]);
+        $genre = new Genre;
+
+        $genre->name = $genre_name;
+        $genre->image_name = $filename;
+
+        $genre->save();
+
         return redirect('admin');
     }
 
@@ -97,7 +108,15 @@ class GenreResourceController extends Controller
     {
         //saving the edited genre to the db.
         $genre_name = $request->input('genre_name');
-        DB::table('genres')->where('id', $id)->update(['name' => $genre_name]);
+        //DB::table('genres')->where('id', $id)->update(['name' => $genre_name]);
+        //Genre::table('genres')->where('id', $id)->update(['name' => $genre_name]);
+
+        $genre = Genre::find($id);
+
+        $genre->name = $genre_name;
+
+        $genre->save();
+
         return redirect('admin');
     }
 
@@ -110,7 +129,15 @@ class GenreResourceController extends Controller
     public function destroy($id)
     {
         //deLete the genre with id = $id from db with ther movies
-        DB::table('genres')->where('id', $id)->delete();
+        // DB::table('genres')->where('id', $id)->delete();
+
+        // Genre::table('genres')->where('id', $id)->delete();
+
+        // $genre = Genre::find($id);
+        // $genre->delete();
+
+        Genre::destroy($id);
+
         return redirect('admin');
     }
 }
