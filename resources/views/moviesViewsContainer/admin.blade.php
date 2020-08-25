@@ -81,18 +81,26 @@
                         </td>
                     {!! Form::close() !!}
 
-                        <td class="text-center">
-                            {!! Form::open(['url' => 'genre/'.$genre->id, 'method' => 'delete']) !!}
-                                {!! Form::submit('Delete',["class"=>"btn btn-danger"]);!!}                        
-                            {!! Form::close() !!}
-                        </td>
+                        @if($genre->trashed())
+                            <td class="text-center">
+                                {!! Form::open(['url' => 'genre/delete-forever/'.$genre->id]) !!}
+                                    {!! Form::submit('Delete forever',["class"=>"btn btn-danger"]);!!}                        
+                                {!! Form::close() !!}
+                            </td>
+                        @else
+                            <td class="text-center">
+                                {!! Form::open(['url' => 'genre/'.$genre->id, 'method' => 'delete']) !!}
+                                    {!! Form::submit('Delete',["class"=>"btn btn-danger"]);!!}                        
+                                {!! Form::close() !!}
+                            </td>
+                        @endif
 
                         @if($genre->trashed())
-                        <td class="text-center">
-                            {!! Form::open(['url' => 'genre/restore/'.$genre->id]) !!}
-                                {!! Form::submit('Restore',["class"=>"btn btn-light"]);!!}                        
-                            {!! Form::close() !!}
-                        </td>                        
+                            <td class="text-center">
+                                {!! Form::open(['url' => 'genre/restore/'.$genre->id]) !!}
+                                    {!! Form::submit('Restore',["class"=>"btn btn-light"]);!!}                        
+                                {!! Form::close() !!}
+                            </td>                        
                         @endif
 
 

@@ -43,3 +43,5 @@ Route::resource('genre', 'GenreResourceController');
 Route::get('admin', 'genreController@index');
 
 Route::post('genre/restore/{id}', 'GenreResourceController@restore');
+
+Route::post('genre/delete-forever/{id}', 'GenreResourceController@deleteForever');

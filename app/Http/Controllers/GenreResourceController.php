@@ -149,4 +149,12 @@ class GenreResourceController extends Controller
 
         return redirect('admin');
     }
+
+    public function deleteForever($id)
+    {
+        $genre = Genre::onlyTrashed()->find($id);
+        $genre->forceDelete();
+
+        return redirect('admin');
+    }
 }
