@@ -1,5 +1,5 @@
 
-@extends('master')
+@extends('adminMaster')
 
 @section('content')
 
@@ -7,13 +7,13 @@
 <div class="container">
 
     <div class="panel panel-default">
-        <div class="panel-heading text-center">
+        <div class="panel-heading text-center mt-1">
             <h1>Managing Genres</h1> 
         </div>
 
         <div class="panel-body">
             <div class="text-center">
-                <h2 ><br/> Creating new Genre</h2>
+                <h2> Creating new Genre</h2>
             </div>
             <hr/>
 
@@ -47,9 +47,13 @@
 
         </div>{{-- end of body --}}
         <hr/>
+
+        <div class="text-center mt-5">
+            <h2> Editing Existing Genre</h2>
+        </div>
         <br/>
         @if($genres != null)
-            <table c1ass="table">
+            <table class="table">
                 <tr>
                     <th><h3>Genre Name</h3></th>
                     <th><h3>Total Movies</h3></th>
