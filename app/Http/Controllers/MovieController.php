@@ -42,13 +42,41 @@ class MovieController extends Controller
         $daily_rental_rate = $request->daily_rental_rate;
         $genre_id = $request->genre_id;
 
-        DB::table('movies')->insert([
+        $movieID = DB::table('movies')->insertGetId([
             'title' => $title,
             'description' => $description,
             'number_in_stock' => $number_in_stock,
             'daily_rental_rate' => $daily_rental_rate,
             'genre_id' => $genre_id
         ]);
+
+        $actor1 = $request->main_actor_1;
+        $actor2 = $request->main_actor_2;
+        $actor3 = $request->main_actor_3;
+
+        $actors_names = [$actor1, $actor2, $actor3];
+        $actors = array_fill(0, 3, null);
+
+        $index = 0;
+
+        foreach ($actors_names as $name) {
+            if ($name != null) {
+                $actors[$index] = DB::table("actors")
+                    ->where("first_name", $name)
+                    ->select("id")
+                    ->first();
+            }
+            $index++;
+        }
+
+        foreach ($actors as $actor) {
+            if ($actor != null) {
+                DB::table('movies_actors_relationship')->insert([
+                    'movie_id' => $movieID,
+                    'actor_id' => $actor->id
+                ]);
+            }
+        }
 
         return redirect('genre/' . $genre_id);
     }

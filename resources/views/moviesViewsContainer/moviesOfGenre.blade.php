@@ -46,19 +46,54 @@
             </div>
         </div>
 
-        <div class="col-5">
+        <div class="col-6">
             <div class="input-group mb-1">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="">Daily Rental Rate</span>
                 </div>
                 {!!   Form::text('daily_rental_rate', '',['class' => 'form-control']) !!}
             </div>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="input-group mb-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="">Main Actor 1</span>
+                </div>
+                {!!   Form::text('main_actor_1', '',['class' => 'form-control']) !!}
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="input-group mb-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="">Main Actor 2</span>
+                </div>
+                {!!   Form::text('main_actor_2', '',['class' => 'form-control']) !!}
+            </div>
+        </div>
+
+        
+        
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="input-group mb-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="">Main Actor 3</span>
+                </div>
+                {!!   Form::text('main_actor_3', '',['class' => 'form-control']) !!}
+            </div>
         </div>
 
         <div class="col-1">
             {!! Form::submit('Add',["class"=>"btn btn-info"]);!!}
         </div>
+        
     </div>
+    
     {!! Form::close() !!}
 
     <hr/>
