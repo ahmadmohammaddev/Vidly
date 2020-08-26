@@ -47,3 +47,5 @@ Route::post('genre/restore/{id}', 'GenreResourceController@restore');
 Route::post('genre/delete-forever/{id}', 'GenreResourceController@deleteForever');
 
 Route::resource('movie', 'MovieController');
+
+Route::get('summary', 'MovieController@summary');

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use App\Movie;
+
 class MovieController extends Controller
 {
     /**
@@ -142,5 +144,11 @@ class MovieController extends Controller
         $genre_id = $request->genre_id;
         DB::table('movies')->where('id', $id)->delete();
         return redirect('genre/' . $genre_id);
+    }
+
+    public function summary()
+    {
+        $results = Movie::with('genre')->with('actors')->get();
+        return view('moviesViewsContainer.summary', compact('results', $results));
     }
 }
