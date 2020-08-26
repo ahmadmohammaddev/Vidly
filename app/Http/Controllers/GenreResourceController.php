@@ -90,7 +90,20 @@ class GenreResourceController extends Controller
         //     ->get();
 
         $all_movies = $genre->movies;
-        return view('moviesViewsContainer.moviesOfGenre', compact('genre', $genre, 'all_movies', $all_movies));
+
+        $array_of_actors = [];
+
+        foreach ($all_movies as $movie) {
+            array_push(
+                $array_of_actors,
+                DB::table("movies")
+                    ->join("movies_actors_relationship", "movies.id", "=", "movies_actors_relationship.movie_id")
+                    ->join("actors", "movies_actors_relationship.actor_id", "=", "actors.id")->where("movies.id", $movie->id)
+                    ->select("actors.first_name", "actors.id")->get()
+            );
+        }
+
+        return view('moviesViewsContainer.moviesOfGenre', compact('genre', $genre, 'all_movies', $all_movies, 'array_of_actors', $array_of_actors));
     }
 
     /**

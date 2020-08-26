@@ -108,10 +108,11 @@
             <th class="text-center"><h5>Movie Description</h5></th>
             <th class="text-center"><h5>Number in stock</h5></th>
             <th class="text-center"><h5>Daily rental rate</h5></th>
-            <th class="text-center"></th>            
+            <th class="text-center"><h5>Main Actors</h5></th>            
             <th class="text-center"></th>
         </tr>
-                
+        
+        <?php $i=0 ?>
         @foreach($all_movies as $movie)
         <tr>
             {!! Form::open(['url' => 'movie/'.$movie->id, 'method' => 'put']) !!}
@@ -127,7 +128,16 @@
                 </td>
                 <td>
                     {!! Form::text('daily_rental_rate', $movie->daily_rental_rate, ['class' => 'form-control']); !!}
-                </td>                        
+                </td>
+
+                <td>
+                    <?php $actors = $array_of_actors[$i]; ?>
+                    @foreach ($actors as $actor) 
+                    <a href="/actor/{{ $actor->id }}"><span class="badge badge-pill badge-primary">{{ $actor->first_name}}</span></a>
+                    @endforeach
+                    <?php $i=$i+1; ?>
+                </td>
+                
                 <td class="text-center">
                     {!! Form::submit('Update',["class"=>"btn btn-success"]);!!}
                 </td>
