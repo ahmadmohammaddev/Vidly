@@ -3,6 +3,7 @@
 use App\Http\Controllers\genreController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,7 @@ Route::post('genre/delete-forever/{id}', 'GenreResourceController@deleteForever'
 Route::resource('movie', 'MovieController');
 
 Route::get('summary', 'MovieController@summary');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
