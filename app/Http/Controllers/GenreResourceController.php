@@ -72,6 +72,8 @@ class GenreResourceController extends Controller
 
         $genre->save();
 
+        session()->push('m', 'success');
+        session()->push('m', 'Genre created successfully!');
         return redirect('admin');
     }
 
@@ -138,6 +140,9 @@ class GenreResourceController extends Controller
 
         $genre->save();
 
+        session()->push('m', 'success');
+        session()->push('m', 'Genre updated successfully!');
+
         return redirect('admin');
     }
 
@@ -159,6 +164,9 @@ class GenreResourceController extends Controller
 
         Genre::destroy($id);
 
+        session()->push('m', 'danger');
+        session()->push('m', 'Genre deleted temporarily!');
+
         return redirect('admin');
     }
 
@@ -168,6 +176,9 @@ class GenreResourceController extends Controller
         $genre = Genre::onlyTrashed()->find($id);
         $genre->restore();
 
+        session()->push('m', 'info');
+        session()->push('m', 'Genre restored successfully!');
+
         return redirect('admin');
     }
 
@@ -175,6 +186,9 @@ class GenreResourceController extends Controller
     {
         $genre = Genre::onlyTrashed()->find($id);
         $genre->forceDelete();
+
+        session()->push('m', 'danger');
+        session()->push('m', 'Genre deleted successfully!');
 
         return redirect('admin');
     }

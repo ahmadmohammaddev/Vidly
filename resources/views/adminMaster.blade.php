@@ -60,6 +60,15 @@
 
     <main role="main">      
 
+      @if(Session::has('m'))
+      <div class="container">
+        <?php $a = []; $a = session()->pull('m'); ?>
+        <div role="alert" class="alert alert-{{ $a[0] }}">
+          {{ $a[1] }}
+        </div>
+      </div>
+      @endif
+
       @yield('content')
 
       
