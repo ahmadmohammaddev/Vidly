@@ -17,6 +17,17 @@
             </div>
             <hr/>
 
+            {{-- SHowing Errors for input fields if any --}}
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
             {{-- Creating New Genre Form --}}
             
             {!! Form::open(['url' => 'genre', 'files' => true]) !!}

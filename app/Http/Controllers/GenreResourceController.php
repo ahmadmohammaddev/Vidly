@@ -56,7 +56,14 @@ class GenreResourceController extends Controller
      */
     public function store(Request $request)
     {
-        // storing the new created genre to the db.
+        // Validating data entered bu the user
+
+        $validatedData = $request->validate([
+            'genre_name' => ['required', 'unique:genres,name', 'max:40'],
+            'image' => ['required', 'mimes:png', 'max:1024']
+        ]);
+
+        // Storing the new created genre to the db.
         $genre_name = $request->input('genre_name');
         $file = $request->file('image');
         $destinationPath = 'images';
