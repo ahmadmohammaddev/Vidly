@@ -96,10 +96,11 @@ class GenreResourceController extends Controller
         foreach ($all_movies as $movie) {
             array_push(
                 $array_of_actors,
-                DB::table("movies")
-                    ->join("movies_actors_relationship", "movies.id", "=", "movies_actors_relationship.movie_id")
-                    ->join("actors", "movies_actors_relationship.actor_id", "=", "actors.id")->where("movies.id", $movie->id)
-                    ->select("actors.first_name", "actors.id")->get()
+                // DB::table("movies")
+                //     ->join("movies_actors_relationship", "movies.id", "=", "movies_actors_relationship.movie_id")
+                //     ->join("actors", "movies_actors_relationship.actor_id", "=", "actors.id")->where("movies.id", $movie->id)
+                //     ->select("actors.first_name", "actors.id")->get()
+                $movie->actors()->select("actors.first_name", "actors.id")->get()
             );
         }
 
