@@ -84,10 +84,12 @@ class GenreResourceController extends Controller
     public function show($id)
     {
         $genre = Genre::find($id);
-        $all_movies = DB::table('genres')
-            ->join('movies', 'genres.id', '=', 'movies.genre_id')
-            ->where('genres.id', $id)
-            ->get();
+        // $all_movies = DB::table('genres')
+        //     ->join('movies', 'genres.id', '=', 'movies.genre_id')
+        //     ->where('genres.id', $id)
+        //     ->get();
+
+        $all_movies = $genre->movies;
         return view('moviesViewsContainer.moviesOfGenre', compact('genre', $genre, 'all_movies', $all_movies));
     }
 
