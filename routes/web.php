@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 //     return view('welcome');
 // });
 
-Route::redirect('/', '/admin');
+Route::redirect('/', '/home');
 
 // Basic Controller routes
 /*
