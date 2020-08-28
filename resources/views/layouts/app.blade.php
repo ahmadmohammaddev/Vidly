@@ -50,9 +50,6 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="/genre">Avialable Genres</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="/admin">Managing Genres</a>
                             </li>
                             <li class="nav-item">
