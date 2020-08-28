@@ -60,7 +60,7 @@ class GenreResourceController extends Controller
 
         $validatedData = $request->validate([
             'genre_name' => ['required', 'unique:genres,name', 'max:40'],
-            'image' => ['required', 'mimes:png', 'max:1024']
+            'image' => ['required', 'image', 'max:1024']
         ]);
 
         // Storing the new created genre to the db.
