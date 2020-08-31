@@ -15,4 +15,9 @@ class GenreApiController extends Controller
 
         return response()->json(Genre::get(), 200);
     }
+
+    public function show($id)
+    {
+        return response()->json(Genre::find($id), 200);
+    }
 }
