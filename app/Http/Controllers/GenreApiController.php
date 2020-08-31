@@ -26,4 +26,10 @@ class GenreApiController extends Controller
         $genre = Genre::create($request->all());
         return response()->json($genre, 201);
     }
+
+    public function update(Request $request, Genre $genre)
+    {
+        $genre->update($request->all());
+        return response()->json($genre, 200);
+    }
 }
