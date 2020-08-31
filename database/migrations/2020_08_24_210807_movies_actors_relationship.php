@@ -15,8 +15,8 @@ class MoviesActorsRelationship extends Migration
     {
         Schema::create('movies_actors_relationship', function (Blueprint $table) {
             $table->id();
-			$table->integer('movie_id');
-			$table->integer('actor_id');
+            $table->unsignedBigInteger('movie_id')->references('id')->on('movies');
+            $table->unsignedBigInteger('actor_id')->references('id')->on('actors');
             $table->timestamps();
         });
     }
