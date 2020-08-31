@@ -25,3 +25,5 @@ Route::get('genre/{id}', 'GenreApiController@show');
 Route::post('genre', 'GenreApiController@store');
 
 Route::put('genre/{genre}', 'GenreApiController@update');
+
+Route::delete('genre/{genre}', 'GenreApiController@delete');

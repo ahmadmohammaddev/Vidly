@@ -32,4 +32,10 @@ class GenreApiController extends Controller
         $genre->update($request->all());
         return response()->json($genre, 200);
     }
+
+    public function delete(Request $request, Genre $genre)
+    {
+        $genre->delete();
+        return response()->json(null, 204);
+    }
 }
