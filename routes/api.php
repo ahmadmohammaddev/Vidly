@@ -21,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('genre', 'GenreApiController@index');
 
 Route::get('genre/{id}', 'GenreApiController@show');
+
+Route::post('genre', 'GenreApiController@store');

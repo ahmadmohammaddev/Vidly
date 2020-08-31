@@ -12,6 +12,8 @@ class Genre extends Model
 	//protected $primaryKey = 'id';
 	use SoftDeletes;
 
+	protected $fillable = ["name", "image_name"];
+
 	public function movies()
 	{
 		//return $this->hasMany('App\Movie', 'genre_id', 'id');

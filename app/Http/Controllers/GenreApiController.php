@@ -20,4 +20,10 @@ class GenreApiController extends Controller
     {
         return response()->json(Genre::find($id), 200);
     }
+
+    public function store(Request $request)
+    {
+        $genre = Genre::create($request->all());
+        return response()->json($genre, 201);
+    }
 }
