@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Genre as GenreResource;
 use App\Genre;
 
 use Illuminate\Http\Request;
@@ -23,7 +24,8 @@ class GenreApiController extends Controller
         if (is_null($genre)) {
             return response()->json(null, 404);
         }
-        return response()->json(Genre::findOrFail($id), 200);
+        $response = new GenreResource(Genre::findOrFail($id), 200);
+        return response()->json($response, 200);
     }
 
     public function store(Request $request)
