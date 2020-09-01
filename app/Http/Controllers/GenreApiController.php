@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Genre;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class GenreApiController extends Controller
 {
@@ -23,6 +24,12 @@ class GenreApiController extends Controller
 
     public function store(Request $request)
     {
+        $rules = [
+            'name' => 'required|max:10',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        dd($validator->fails());
+
         $genre = Genre::create($request->all());
         return response()->json($genre, 201);
     }
