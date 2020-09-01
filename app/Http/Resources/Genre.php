@@ -15,7 +15,8 @@ class Genre extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => mb_strimwidth($this->name, 0, 5, '...'),
+            'name' => $this->name,
+            'image_name' => $this->image_name
         ];
     }
 }
