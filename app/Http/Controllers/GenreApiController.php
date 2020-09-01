@@ -25,10 +25,12 @@ class GenreApiController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'name' => 'required|max:10',
+            'name' => 'required|max:40',
         ];
         $validator = Validator::make($request->all(), $rules);
-        dd($validator->fails());
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
 
         $genre = Genre::create($request->all());
         return response()->json($genre, 201);
