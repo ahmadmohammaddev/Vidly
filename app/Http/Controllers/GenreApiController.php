@@ -19,6 +19,10 @@ class GenreApiController extends Controller
 
     public function show($id)
     {
+        $genre = Genre::find($id);
+        if (is_null($genre)) {
+            return response()->json(null, 404);
+        }
         return response()->json(Genre::findOrFail($id), 200);
     }
 
