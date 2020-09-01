@@ -29,3 +29,5 @@ Route::put('genre/{genre}', 'GenreApiController@update');
 Route::delete('genre/{genre}', 'GenreApiController@delete');
 
 Route::any('errors', 'GenreApiController@errors');
+
+Route::apiResource('movie', 'MovieApiController');
