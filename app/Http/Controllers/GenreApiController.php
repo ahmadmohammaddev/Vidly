@@ -25,7 +25,8 @@ class GenreApiController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'name' => 'required|max:40',
+            'name' => ['required', 'unique:genres,name', 'max:40'],
+            'image_name' => ['required']
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
