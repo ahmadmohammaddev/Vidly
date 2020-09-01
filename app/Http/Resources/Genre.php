@@ -14,9 +14,6 @@ class Genre extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'name' => $this->name,
-            'image_name' => $this->image_name
-        ];
+        return parent::toArray($request);
     }
 }

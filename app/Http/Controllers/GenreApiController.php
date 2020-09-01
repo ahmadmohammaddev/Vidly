@@ -24,7 +24,8 @@ class GenreApiController extends Controller
         if (is_null($genre)) {
             return response()->json(null, 404);
         }
-        $response = new GenreResource(Genre::findOrFail($id), 200);
+        $genre = Genre::with('movies')->findOrFail($id);
+        $response = new GenreResource($genre);
         return response()->json($response, 200);
     }
 
