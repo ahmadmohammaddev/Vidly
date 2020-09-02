@@ -14,10 +14,6 @@ class Genre extends Model
 
 	protected $fillable = ["name", "image_name"];
 
-	protected $hidden = [
-		'movies',
-	];
-
 	public function movies()
 	{
 		//return $this->hasMany('App\Movie', 'genre_id', 'id');

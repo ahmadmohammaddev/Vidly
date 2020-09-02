@@ -20,9 +20,12 @@ class GenreApiController extends Controller
 
     public function show($id)
     {
+        $genre = Genre::find($id);
+        if (is_null($genre)) {
+            return response()->json(null, 404);
+        }
         $genre = Genre::with('movies')->findOrFail($id);
-        $response['genre'] = $genre;
-        $response['movies'] = $genre->movies;
+        $response = new GenreResource($genre);
         return response()->json($response, 200);
     }
 
