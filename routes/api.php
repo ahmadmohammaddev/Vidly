@@ -33,3 +33,5 @@ Route::any('errors', 'GenreApiController@errors');
 Route::apiResource('movie', 'MovieApiController');
 
 Route::get('genre/{genre}/movies', 'GenreApiController@movies');
+
+Route::get('movie/{movie}/actors', 'MovieApiController@actors');

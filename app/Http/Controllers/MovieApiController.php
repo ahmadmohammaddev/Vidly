@@ -70,7 +70,8 @@ class MovieApiController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        //
+        $movie->update($request->all());
+        return response()->json($movie, 200);
     }
 
     /**
@@ -83,5 +84,11 @@ class MovieApiController extends Controller
     {
         $movie->delete();
         return response()->json(null, 204);
+    }
+
+    public function actors(Request $request, Movie $movie)
+    {
+        $actors = $movie->actors;
+        return response()->json($actors, 200);
     }
 }
