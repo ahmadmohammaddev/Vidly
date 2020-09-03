@@ -17,9 +17,9 @@ class CreateMoviesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->integer('genre_id')->nullable();
+            $table->unsignedBigInteger('genre_id')->references('id')->on('genres');
             $table->integer('number_in_stock');
-            $table->integer('daily_rental_rate');
+            $table->double('daily_rental_rate', 4, 2);
             $table->timestamps();
         });
     }
