@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Genre;
@@ -33,7 +34,9 @@ class GenreResourceController extends Controller
 
         //$genres = DB::table('genres')->get();
 
-        $genres = Genre::all();
+        $client = new GuzzleHttp\Client();
+        $response = $client->request('GET', 'http://127.0.0.1:84/api/genre');
+        $genres = json_decode((string) $response->getBody(), true);
 
         return view('moviesViewsContainer.movies')->with('genres', $genres);
     }
