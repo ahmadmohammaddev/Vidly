@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use GuzzleHttp;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Genre;
@@ -34,9 +34,10 @@ class GenreResourceController extends Controller
 
         //$genres = DB::table('genres')->get();
 
-        $client = new GuzzleHttp\Client();
+        $client = new Client();
         $response = $client->request('GET', 'http://127.0.0.1:84/api/genre');
-        $genres = json_decode((string) $response->getBody(), true);
+
+        $genres = json_decode((string) $response->getBody());
 
         return view('moviesViewsContainer.movies')->with('genres', $genres);
     }
@@ -75,12 +76,15 @@ class GenreResourceController extends Controller
         $file->move($destinationPath, $filename);
         //DB::table('genres')->insert(['name' => $genre_name, 'image_name' => $filename]);
         //Genre::insert(['name' => $genre_name, 'image_name' => $filename]);
-        $genre = new Genre;
 
-        $genre->name = $genre_name;
-        $genre->image_name = $filename;
+        $client = new Client();
+        $response = $client->request('POST', 'http://127.0.0.1:84/api/genre', [
+            'json' => [
+                'name' => $genre_name,
+                'image_name' => $filename
+            ]
+        ]);
 
-        $genre->save();
 
         session()->push('m', 'success');
         session()->push('m', 'Genre created successfully!');
@@ -95,7 +99,11 @@ class GenreResourceController extends Controller
      */
     public function show($id)
     {
-        $genre = Genre::find($id);
+        $client = new Client();
+        $response = $client->request('GET', 'http://127.0.0.1:84/api/genre/' . $id);
+
+        $genre = json_decode((string) $response->getBody());
+
         // $all_movies = DB::table('genres')
         //     ->join('movies', 'genres.id', '=', 'movies.genre_id')
         //     ->where('genres.id', $id)
@@ -106,16 +114,14 @@ class GenreResourceController extends Controller
         $array_of_actors = [];
 
         foreach ($all_movies as $movie) {
+            $response = $client->request('GET', 'http://127.0.0.1:84/api/movie/' . $movie->id . '/actors');
+
+            $actors = json_decode((string) $response->getBody());
             array_push(
                 $array_of_actors,
-                // DB::table("movies")
-                //     ->join("movies_actors_relationship", "movies.id", "=", "movies_actors_relationship.movie_id")
-                //     ->join("actors", "movies_actors_relationship.actor_id", "=", "actors.id")->where("movies.id", $movie->id)
-                //     ->select("actors.first_name", "actors.id")->get()
-                $movie->actors()->select("actors.first_name", "actors.id")->get()
+                $actors
             );
         }
-
         return view('moviesViewsContainer.moviesOfGenre', compact('genre', $genre, 'all_movies', $all_movies, 'array_of_actors', $array_of_actors));
     }
 
@@ -144,11 +150,12 @@ class GenreResourceController extends Controller
         //DB::table('genres')->where('id', $id)->update(['name' => $genre_name]);
         //Genre::table('genres')->where('id', $id)->update(['name' => $genre_name]);
 
-        $genre = Genre::find($id);
-
-        $genre->name = $genre_name;
-
-        $genre->save();
+        $client = new Client();
+        $response = $client->request('PUT', 'http://127.0.0.1:84/api/genre/' . $id, [
+            'json' => [
+                'name' => $genre_name
+            ]
+        ]);
 
         session()->push('m', 'success');
         session()->push('m', 'Genre updated successfully!');
@@ -171,8 +178,9 @@ class GenreResourceController extends Controller
 
         // $genre = Genre::find($id);
         // $genre->delete();
+        $client = new Client();
+        $response = $client->request('DELETE', 'http://127.0.0.1:84/api/genre/' . $id);
 
-        Genre::destroy($id);
 
         session()->push('m', 'danger');
         session()->push('m', 'Genre deleted temporarily!');
