@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $client = new Client();
-        $response = $client->request('GET', 'http://127.0.0.1:84/api/genre');
+        $response = $client->request('GET', 'http://127.0.0.1/api/genre');
 
         $genres = json_decode((string) $response->getBody());
         //dd($genres);

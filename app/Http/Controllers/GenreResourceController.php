@@ -35,7 +35,7 @@ class GenreResourceController extends Controller
         //$genres = DB::table('genres')->get();
 
         $client = new Client();
-        $response = $client->request('GET', 'http://127.0.0.1:84/api/genre');
+        $response = $client->request('GET', 'http://127.0.0.1/api/genre');
 
         $genres = json_decode((string) $response->getBody());
 
@@ -78,7 +78,7 @@ class GenreResourceController extends Controller
         //Genre::insert(['name' => $genre_name, 'image_name' => $filename]);
 
         $client = new Client();
-        $response = $client->request('POST', 'http://127.0.0.1:84/api/genre', [
+        $response = $client->request('POST', 'http://127.0.0.1/api/genre', [
             'json' => [
                 'name' => $genre_name,
                 'image_name' => $filename
@@ -100,7 +100,7 @@ class GenreResourceController extends Controller
     public function show($id)
     {
         $client = new Client();
-        $response = $client->request('GET', 'http://127.0.0.1:84/api/genre/' . $id);
+        $response = $client->request('GET', 'http://127.0.0.1/api/genre/' . $id);
 
         $genre = json_decode((string) $response->getBody());
 
@@ -114,7 +114,7 @@ class GenreResourceController extends Controller
         $array_of_actors = [];
 
         foreach ($all_movies as $movie) {
-            $response = $client->request('GET', 'http://127.0.0.1:84/api/movie/' . $movie->id . '/actors');
+            $response = $client->request('GET', 'http://127.0.0.1/api/movie/' . $movie->id . '/actors');
 
             $actors = json_decode((string) $response->getBody());
             array_push(
@@ -151,7 +151,7 @@ class GenreResourceController extends Controller
         //Genre::table('genres')->where('id', $id)->update(['name' => $genre_name]);
 
         $client = new Client();
-        $response = $client->request('PUT', 'http://127.0.0.1:84/api/genre/' . $id, [
+        $response = $client->request('PUT', 'http://127.0.0.1/api/genre/' . $id, [
             'json' => [
                 'name' => $genre_name
             ]
@@ -179,7 +179,7 @@ class GenreResourceController extends Controller
         // $genre = Genre::find($id);
         // $genre->delete();
         $client = new Client();
-        $response = $client->request('DELETE', 'http://127.0.0.1:84/api/genre/' . $id);
+        $response = $client->request('DELETE', 'http://127.0.0.1/api/genre/' . $id);
 
 
         session()->push('m', 'danger');
