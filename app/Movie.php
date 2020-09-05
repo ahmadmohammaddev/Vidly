@@ -10,6 +10,7 @@ class Movie extends Model
 
 	protected $fillable = ["title", "description", "genre_id", "number_in_stock", "daily_rental_rate"];
 
+	protected $with = ["actors"];
 	public function genre()
 	{
 		return $this->belongsTo('App\Genre');
