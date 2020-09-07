@@ -17,3 +17,25 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('genre', 'GenreApiController@index');
+
+Route::get('genre/{id}', 'GenreApiController@show');
+
+Route::post('genre', 'GenreApiController@store');
+
+Route::put('genre/{genre}', 'GenreApiController@update');
+
+Route::delete('genre/{genre}', 'GenreApiController@delete');
+
+Route::any('errors', 'GenreApiController@errors');
+
+Route::apiResource('movie', 'MovieApiController');
+
+Route::get('genre/{genre}/movies', 'GenreApiController@movies');
+
+Route::get('movie/{movie}/actors', 'MovieApiController@actors');
+
+Route::apiResource('actor', 'ActorApiController');
+
+Route::get('actor/{actor}/movies', 'ActorApiController@movies');

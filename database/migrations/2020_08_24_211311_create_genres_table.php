@@ -16,7 +16,6 @@ class CreateGenresTable extends Migration
         Schema::create('genres', function (Blueprint $table) {
             $table->id();
 			$table->string('name');
-			$table->integer('movies_total');
 			$table->string('image_name');
             $table->timestamps();
 			$table->softDeletes();
