@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,6 +10,7 @@ use App\Genre;
 
 class GenreResourceController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -70,10 +72,12 @@ class GenreResourceController extends Controller
         // Storing the new created genre to the db.
         $genre_name = $request->input('genre_name');
         $file = $request->file('image');
-        $destinationPath = 'images';
+        $destinationPath = 'storage/images';
 
         $filename = $file->getClientOriginalName();
         $file->move($destinationPath, $filename);
+        //Storage::put($filename, File::get($request->file));
+        //Storage::disk('local/storage/images')->put($filename, File::get($request->file));
         //DB::table('genres')->insert(['name' => $genre_name, 'image_name' => $filename]);
         //Genre::insert(['name' => $genre_name, 'image_name' => $filename]);
 
