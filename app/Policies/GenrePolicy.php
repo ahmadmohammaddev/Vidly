@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use Illuminate\Auth\Access\Response;
 use App\Genre;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -25,12 +26,12 @@ class GenrePolicy
     {
         $oldGenre = Genre::find($genre->id);
         if (empty($oldGenre->created_at)) {
-            return false;
+            return Response::deny('There is no genre with this id!!');
         }
         $diffrenceInHours =  $oldGenre->created_at->diffInHours(now());
         if ($diffrenceInHours > 1) {
-            return false;
+            return Response::deny('You can not edit genre name after an hour of creating it!!');
         }
-        return true;
+        return Response::allow();
     }
 }
