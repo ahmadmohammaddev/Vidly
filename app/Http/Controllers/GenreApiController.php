@@ -46,6 +46,10 @@ class GenreApiController extends Controller
 
     public function update(Request $request, Genre $genre)
     {
+        
+        // authorize first
+        $this->authorize('update', $genre);  
+
         $genre->update($request->all());
         return response()->json($genre, 200);
     }

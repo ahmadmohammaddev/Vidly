@@ -1,5 +1,6 @@
 <?php
 
+use App\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,13 @@ Route::get('genre/{id}', 'GenreApiController@show');
 Route::post('genre', 'GenreApiController@store');
 
 Route::put('genre/{genre}', 'GenreApiController@update');
+
+// Route::middleware('can:update,genre')->put('genre/{genre}', 'GenreApiController@update');
+
+// Route::put('/genre/{genre}', function (Genre $genre) {
+//     $genre->update($request->all());
+//     return response()->json($genre, 200);
+// })->middleware('can:update,genre');
 
 Route::delete('genre/{genre}', 'GenreApiController@delete');
 
